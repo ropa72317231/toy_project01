@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript"
+	src="https://ianlunn.co.uk/plugins/jquery-parallax/scripts/jquery.parallax-1.1.3.js"></script>
+<script type="text/javascript"
+	src="https://ianlunn.co.uk/plugins/jquery-parallax/scripts/jquery.localscroll-1.2.7-min.js"></script>
+<script type="text/javascript"
+	src="https://ianlunn.co.uk/plugins/jquery-parallax/scripts/jquery.scrollTo-1.4.2-min.js"></script>
+
+
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet'
+	type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Dosis:400,600' rel='stylesheet' type='text/css'>
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+	rel="stylesheet" type="text/css" />
+<link href="board.css" rel="stylesheet" type="text/css" />
+
+<style>
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+
+p {
+	top: 250px;
+	font: normal 18px Oswald, sans-serif;
+	color: white;
+}
+
+p a {
+	text-decoration: none;
+	font: bold 18px Oswald, sans-serif;
+	color: pink;
+}
+
+p a:hover {
+	border-bottom: 1px dotted pink;
+}
+
+.nav {
+	margin: 0;
+	padding: 0;
+	background-color: #1c2020;
+	float: left;
+	list-style: none;
+}
+
+.nav li {
+	float: left;
+}
+
+.nav li a {
+	display: inline-block;
+	text-decoration: none;
+	padding: 10px 16px;
+	font: bold 20px Oswald, sans-serif;
+	text-transform: uppercase;
+	color: white;
+	position: relative;
+}
+
+#red {
+	border-top: 2px solid red;
+}
+
+#red:hover {
+	background-color: red;
+}
+
+#orange {
+	border-top: 2px solid orange;
+}
+
+#orange:hover {
+	background-color: orange;
+}
+
+#yellow {
+	border-top: 2px solid yellow;
+}
+
+#yellow:hover {
+	background-color: yellow;
+	color: #1c2020;
+}
+
+#green {
+	border-top: 2px solid green;
+}
+
+#green:hover {
+	background-color: green;
+}
+
+#blue {
+	border-top: 2px solid blue;
+}
+
+#blue:hover {
+	background-color: blue;
+}
+
+#indigo {
+	border-top: 2px solid indigo;
+}
+
+#indigo:hover {
+	background-color: indigo;
+}
+
+#purple {
+	border-top: 2px solid purple;
+}
+
+#purple:hover {
+	background-color: purple;
+}
+
+.nav ul {
+	display: none;
+}
+
+.nav li:hover ul {
+	display: block;
+	position: absolute;
+	list-style: none;
+	background-color: #1c2020;
+	padding: 0px;
+}
+
+.nav li:hover li {
+	display: block;
+	float: none;
+}
+
+.nav li:hover li a {
+	width: 300px;
+	font: normal 14px Oswald, sans-serif;
+	color: white;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.nav li:hover li a:hover {
+	background-color: green;
+}
+
+.nav li:hover>a {
+	background-color: green;
+}
+</style>
+</head>
+
+<body>
+
+	<nav th:replace="common/nav"></nav>
+
+	<div class="jumbotron">
+		<div class="container text-center">
+			<form method="post" action="/board/write" enctype="multipart/form-data">
+				<div class="form-group">
+					<label for="title" style="color: black;">Title:</label>
+					<input type="text" class="form-control" name="title" id="title">
+				</div>
+				<div class="form-group">
+					<label for="content" style="color: black;">Content:</label>
+					<textarea class="form-control" rows="5" name="content" id="content"></textarea>
+				</div>
+				<label style="text-align: left; color: black;">파일첨부하기</label>
+				<input type="file" name="file" accept="*.*" multiple>
+				<button type="submit" id="complete" class="btn btn-primary"
+					style="background-color: lightsteelblue; color: black; text-align: center;">글쓰기</button>
+
+				<button type="button" id="complete_dd" class="btn btn-primary"
+					style="background-color: lightsteelblue; color: black; text-align: center;">내가 쓴 글</button>
+			</form>
+		</div>
+	</div>
+
+
+
+
+	<footer th:replace="common/footer"> </footer>
+
+	<script>
+		$("#complete").click(
+				function() {
+					var formData = new FormData($('form')[0]);
+
+					$.ajax({
+						type : 'post',
+						url : '/board/write',
+						processData : false,
+						contentType : false,
+						data : formData,
+						success : function(res) {
+							// 응답이 0이면 로그인 팝업창 띄우기
+							if (res == 0) {
+								// 팝업 띄우기   		주소, 	이름, 		옵션
+								window.open("/signin", "login",
+										"width=900 height=900");
+							} else {
+								alert("글쓰기 완료되었습니다.");
+								location = "/board/";
+							}
+						}
+					});
+					return false;
+				});
+
+		$("#complete_dd").click(
+				function() {
+
+			
+					location = "/board/";
+					return false;
+
+				});
+	</script>
+
+</body>
+</html>

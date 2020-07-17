@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="common/head">
+</head>
+
+<body>
+	<nav th:replace="common/nav"></nav>
+
+
+	<div class="jumbotron">
+		<div class="container text-center">
+			<div class="container">
+				<h1><strong>Test game page</strong></h1>
+				<br>
+				<h4>-------- test ---- ing--------------</h4>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid bg-3 text-center">
+		<!-- <h3>game list</h3> -->
+		<br>
+		<div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
+
+			<div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">
+				<figure class="snip1200">
+					<img src="images/1.jpg" alt="sq-sample27" />
+					<figcaption>
+						<p>I say, if your knees aren't green by the end of the day, you ought to seriously
+							re-examine your life.</p>
+						<div class="heading">
+							<h2>
+								초성
+								<span> 게임</span>
+							</h2>
+						</div>
+					</figcaption>
+					<a href="/gameintro01"></a>
+				</figure>
+			</div>
+
+			<div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">
+				<figure class="snip1200">
+					<img src="images/2.jpg" alt="sq-sample27" />
+					<figcaption>
+						<p>꽐라꽐라꿀라끨라</p>
+						<div class="heading">
+							<h2>
+								뷁
+								<span> 뷁뷁</span>
+							</h2>
+						</div>
+					</figcaption>
+					<a href="#"></a>
+				</figure>
+			</div>
+
+			<div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">
+				<figure class="snip1200">
+					<img src="images/3.jpg" alt="sq-sample27" />
+					<figcaption>
+						<p>아으아으아아ㅏㅏㅏㅏㅏ</p>
+						<div class="heading">
+							<h2>
+								아 정말
+								<span> 적을 말이 없네 </span>
+							</h2>
+						</div>
+					</figcaption>
+					<a href="/testgame_2"></a>
+				</figure>
+			</div>
+
+
+			<div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">
+				<figure class="snip1200">
+					<img src="images/4.jpg" alt="sq-sample27" />
+					<figcaption>
+						<p>ㅇㄱㅇ ㅊㅅ ㄱㅇㅇㄷ.</p>
+						<div class="heading">
+							<h2>
+								초성
+								<span> 게임</span>
+							</h2>
+							
+						</div>
+					</figcaption>
+					<a href="/testgame_3"></a>
+				</figure>
+			</div>
+		</div>
+	</div>
+	<br>
+
+	<footer th:replace="common/footer"> </footer>
+
+	<script>
+		$(".hover").mouseleave(function() {
+			$(this).removeClass("hover");
+		});
+
+		if (opener != null) {
+			window.close(); //현재 창 끄기
+		}
+	</script>
+
+
+
+
+
+
+</body>
+</html>

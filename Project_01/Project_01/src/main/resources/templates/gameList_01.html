@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="common/head"></head>
+
+<body>
+	<nav th:replace="common/nav"></nav>
+
+
+	<div class="jumbotron">
+		<div class="container text-center">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>내용</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="board: ${list}" th:attr="id=${board.id}">
+						<td th:text="${board.id}"></td>
+						<td th:text="${board.game_Content}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<button type="button" class="btn btn-primary btn-block" id="write">글쓰기</button>
+
+		</div>
+	</div>
+
+	<footer th:replace="common/footer"> </footer>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<nav class="navbar navbar-inverse" id = nav_hmhead>
+	<ul class="nav" id = "nav_hm">
+		<li>
+			<a href="/" id="red">Home</a>
+		</li>
+		<li>
+			<a href="/intro" id="orange">About us</a>
+		</li>
+		<li>
+			<a href="/" id="yellow">Rank</a>
+		</li>
+		<li>
+			<a  id="green">Board</a>
+			<ul>
+				<li>
+					<a href="/board/">자유게시판</a>
+				</li>
+				<li>
+					<a href="#">Item 2</a>
+				</li>
+				<li>
+					<a href="#">Item 3</a>
+				</li>
+				<li>
+					<a href="#">Item 4</a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#" id="blue">Blue</a>
+		</li>
+		<li>
+			<a href="#" id="indigo">Indigo</a>
+		</li>
+		<li>
+			<a href="#" id="purple">Purple</a>
+		</li>
+	</ul>
+	
+	
+
+	<ul class="nav navbar-nav navbar-right">
+		<li th:if="${session.user_info} !=null">
+			<a href="/signout">
+				<!--  #을 /signout으로 변경. 용어는 통일하는 것이 좋다. -->
+				<span class="glyphicon glyphicon-log-out"></span>
+				Logout [[${session.user_info.name}+ '님 반갑습니다.']]
+				<!--[[${session.user_info.name}]] 님 반갑습니다  // 이것도 가능.   -->
+			</a>
+		<li th:unless="${session.user_info} !=null">
+			<a href="/signin">
+				<!--  #을 /signin으로 변경 -->
+				<span class="glyphicon glyphicon-log-in"></span>
+				Login
+			</a>
+		</li>
+	</ul>
+</nav>

@@ -1,0 +1,251 @@
+<html>
+<head>
+<title>핑퐁 게임</title>
+
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript"
+	src="https://ianlunn.co.uk/plugins/jquery-parallax/scripts/jquery.parallax-1.1.3.js"></script>
+<script type="text/javascript"
+	src="https://ianlunn.co.uk/plugins/jquery-parallax/scripts/jquery.localscroll-1.2.7-min.js"></script>
+<script type="text/javascript"
+	src="https://ianlunn.co.uk/plugins/jquery-parallax/scripts/jquery.scrollTo-1.4.2-min.js"></script>
+
+
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet'
+	type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Dosis:400,600' rel='stylesheet' type='text/css'>
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+	rel="stylesheet" type="text/css" />
+<link href="randomgame1.css" rel="stylesheet" type="text/css" />
+
+
+<style type="text/css">
+.navbar {
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+footer {
+	background-color: #f2f2f2;
+	padding: 25px;
+}
+
+#pongTable {
+	position: ralative;
+	top: 20px;
+	left: 20px;
+	width: 400px;
+	height: 300px;
+	border: 4px solid #CCC;
+	background-color: #F3F3F3;
+	z-index: 1;
+}
+#playerOne {
+	position: absolute;
+	top: 196px;
+	width: 10px;
+	height: 35px;
+	background-color: #777;
+	z-index: 2;
+}
+#playerTwo {
+	position: absolute;
+	top: 196px;
+	left: 390px;
+	width: 10px;
+	height: 35px;
+	background-color: #777;
+	z-index: 2;
+}
+#ball {
+	position: absolute;
+	top: 160px;
+	left: 210px;
+	width: 7px;
+	height: 7px;
+	clip: rect(0px 7px 7px 0px);
+	background-color: #555;
+	z-index: 2;
+	display: none;
+}
+#click {
+	position: absolute;
+	top: 200px;
+
+	width: 400px;
+	text-align: center;
+	font-family: Tahoma;
+	font-size: 10px;
+	z-index: 3;
+}
+#scores {
+	position: absolute;
+	top: 380px;
+	left:40px;
+	width: 270px;
+	font-family: Tahoma;
+	font-size: 11px;
+	z-index: 3;	
+}
+</style>
+
+<script type="text/javascript">
+var ballAng;
+var speed = 3;
+var ping = 5;
+var pong = 0;
+var mouseSpeed;
+var tempY;
+function init() {
+	document.getElementById("click").style.display = "none";
+	document.getElementById("ball").style.display = "inline";
+	with( document.getElementById("ball").style ) {
+		top = "160px";
+		left = "210px";
+	}
+	document.onmouseup = null;
+	document.onmousemove = movePaddle;
+	ballAng = Math.round( Math.random() * 100 ) + 130;
+	moveDaBall = setInterval("moveBall()", 10);
+}
+function movePaddle(e) {
+	e = (e)?e:event;
+	if( tempY ) {
+		mouseSpeed = Math.round((e.clientY - tempY) * 1.5);
+		if( mouseSpeed == 0 ) mouseSpeed = 1;
+	}
+	with( document.getElementById("playerOne").style ) {
+		top = e.clientY - 18 + "px";
+		if( parseInt(top) < 100 || parseInt(top) > 310 ) {
+			if( parseInt(top) < 100 ) {
+				top = "100px";
+			} else {
+				top = "310px";
+			}
+		}
+	}
+	tempY = e.clientY;
+}
+function moveBall() {
+	var ballX = parseInt(document.getElementById("ball").style.left);
+	var ballY = parseInt(document.getElementById("ball").style.top);
+	var playOneX = parseInt( document.getElementById("playerOne").style.left );
+	var playOneY = parseInt( document.getElementById("playerOne").style.top );
+	var playTwoX = parseInt( document.getElementById("playerTwo").style.left );
+	var playTwoY = parseInt( document.getElementById("playerTwo").style.top );
+	if( ballY >= (playOneY - 5) && ballY <= (playOneY + 35 + 5) && ballX >= playOneX && ballX <= (playOneX + 10) ) {
+		if( pong == 3 ) {
+			ping++;
+			pong = 0;
+		} else {
+			pong++;
+		}
+		document.getElementById("ball").style.left = playOneX + 10 + "px";
+		ballAng = 180 - ballAng - mouseSpeed;
+	}
+	if( ballY >= (playTwoY - 5) && ballY <= (playTwoY + 35 + 5) && ballX >= playTwoX && ballX <= (playTwoX + 10) ) {
+		if( pong == 3 ) {
+			ping++;
+			pong = 0;
+		} else {
+			pong++;
+		}
+		document.getElementById("ball").style.left = playTwoX + "px";
+		ballAng = 180 - ballAng;
+	}
+	if( ballY < 25 || ballY > 316 ) {
+		document.getElementById("ball").style.top = (ballY < 25)?25+"px":316+"px";
+		ballAng = 360 - ballAng;
+	}
+	if( ballX <= 12 || ballX >= 417 ) {
+		document.getElementById("ball").style.left = (ballX <=12)?12+"px":417+"px";
+		if( ballX<= 12 ) {
+			endPoint(document.getElementById("twoScore"));
+		} else {
+			endPoint(document.getElementById("oneScore"));
+		}
+	}
+	moveAI( ballY );
+	moveObjAtAngle( document.getElementById("ball"), ballAng, ping);
+}
+function moveObjAtAngle( obj, ang, dist ) {
+	with( obj.style ) {
+		left = parseInt(left) + ( dist * Math.cos( ang * (Math.PI/180) ) ) + "px";
+		top  = parseInt(top)  - ( dist * Math.sin( ang * (Math.PI/180) ) ) + "px";
+	}
+}
+function moveAI( y ) {
+	var AI = document.getElementById("playerTwo");
+	y = y - 10;
+	y = parseInt(AI.style.top) + ((y - parseInt(AI.style.top)) / speed);
+	if( y < 100 || y > 310 ) {
+		if( y < 100 ) {
+			y = 100;
+		} else {
+			y = 310;
+		}
+	}
+	AI.style.top = y +"px";
+}
+function endPoint(place) {
+	clearInterval(moveDaBall);
+	ping = 7;
+	pong = 0;
+	document.onmouseup = init;
+	document.getElementById("click").innerHTML = "click to continue";
+	place.innerHTML = parseInt(place.innerHTML) + 1;
+	if( parseInt(place.innerHTML) == 10 ) {
+		if( place.id == "oneScore" ) {
+			endGame(1);
+		} else {
+			endGame(0);
+		}
+	}
+	document.getElementById("click").style.display = "inline";
+}
+function endGame(win) {
+	document.onmouseup = restartGame;
+	if( win ) {
+		document.getElementById("click").innerHTML = "<strong>you are dah winnah!</strong><br /> click to start over";
+	} else {
+		document.getElementById("click").innerHTML = "<strong>you are dah losah!</strong><br /> click to start over";
+	}
+}
+function restartGame() {
+	document.getElementById("oneScore").innerHTML = 0;
+	document.getElementById("twoScore").innerHTML = 0;
+	init();
+}
+document.onmouseup = init;
+</script>
+
+
+</head>
+<body>
+<nav th:replace="common/nav"></nav>
+
+<table border=0><td height=330 width=410>
+	<div id="pongTable">
+		<div style="float: right; width: 50%; height: 100%; border-left: 2px dashed #DDD;"> </div>
+	</div>
+	<div id="playerOne" style="top: 200px"> </div>
+	<div id="playerTwo" style="left: 390px; top: 200px"> </div>
+	<div id="ball" style="left: 210px; top: 130px"> </div>
+	<div id="click">click to continue</div>
+	<div id="scores">
+		<span style="float: left;" id="oneScore">0</span>
+		<span style="float: right;" id="twoScore">0</span>
+	</div>
+</td></table>
+
+</body>
+</html>

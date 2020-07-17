@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="common/head">
+
+</head>
+<body>
+
+	<nav th:replace="common/nav"></nav>
+
+	<script>
+		
+	</script>
+
+
+	<div class="jumbotron">
+		<div class="container text-center">
+			<form method="post" action="/game3">
+				<label for="result">복불복 게임</label> <br>
+				<label for="result">꽝을 고르면 패배!</label> <br> 
+				<input id="number_dw" type="text" value="0">
+				<button type="button" id="input">칸수 입력</button>
+				<br>
+				<input id="number_ran" type="text" value="0">
+				<button type="button" id="input_ran">꽝수 입력</button>
+				<div id="game"></div>
+				<button type="button" id="start_dw">실행</button>
+			</form>
+		</div>
+	</div>
+
+
+	<footer th:replace="common/footer"> </footer>
+
+	<script>
+		var ran = [0];
+
+		var num = 0
+		
+		var num_ran = 0;
+
+		
+		$('#number_dw').on("keyup", function() {
+			$(this).val($(this).val().replace(/[^0-9]/g, ""));
+		});
+		
+		$('#number_ran').on("keyup", function() {
+			$(this).val($(this).val().replace(/[^0-9]/g, ""));
+		});
+		
+
+		$('#input').click(function() {
+			num = parseInt($('#number_dw').val());
+		});
+		
+		$('#input_ran').click(function() {
+			num_ran = parseInt($('#number_ran').val());
+		});
+
+		var html = '';
+
+		$('#start_dw').click(function() {
+			
+			for (var i = 1; i <= num_ran; i++) {
+				ran[i] = parseInt(Math.random() * (num * num) + 1);
+				for(var j = 0; j < i; j++) {
+					if(ran[j] == ran[i]) {
+						ran[i] = parseInt(Math.random() * (num * num) + 1);
+						j = 0;
+					}
+				}
+			}
+			
+			for (var i = 1; i <= num * num; i++) {
+				html += '<button type="button" id="' + i + '" class="btn btn-default">';
+				html += (i < 10 ? '0' + i : i) + '</button>';
+				if (i % num == 0) {
+					html += '<br>';
+				}
+			}
+			
+		
+			$('#game').empty(html);
+			$('#game').html(html);
+		});
+
+		// 미래에 생성될 요소까지 이벤트 적용 => on
+// 		$('#game > button').click(function() {
+		$('#game').on("click", "button", function() {
+			console.log(1111);
+			
+			var id = $(this).attr('id');
+			if (this.style.color == "blue") {
+				alert("이미 선택한 숫자입니다.");
+			}
+			if ($.inArray(eval(id), ran) != -1) {
+				$(this).css('color', 'red');
+				alert("꽝!");
+			} else {
+				$(this).css('color', 'blue');
+			}
+		});
+	</script>
+
+
+</body>
+</html>

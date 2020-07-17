@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript"
+	src="https://ianlunn.co.uk/plugins/jquery-parallax/scripts/jquery.parallax-1.1.3.js"></script>
+<script type="text/javascript"
+	src="https://ianlunn.co.uk/plugins/jquery-parallax/scripts/jquery.localscroll-1.2.7-min.js"></script>
+<script type="text/javascript"
+	src="https://ianlunn.co.uk/plugins/jquery-parallax/scripts/jquery.scrollTo-1.4.2-min.js"></script>
+
+
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet'
+	type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Dosis:400,600' rel='stylesheet' type='text/css'>
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+	rel="stylesheet" type="text/css" />
+
+
+<link href="Random1.css" rel="stylesheet" type="text/css" />
+
+
+<style>
+.navbar {
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+footer {
+	background-color: #f2f2f2;
+	padding: 25px;
+}
+
+body {
+	font-family: 'Nunito', sans-serif;
+	color: #384047;
+	background-color: #A4C3FF;
+}
+
+textarea {
+	width: 440px;
+	height: 35px;
+	text-align: center;
+	overflow-y: hidden;
+	resize: none;
+	font-weight: bold;
+}
+</style>
+</head>
+<body>
+	<nav th:replace="common/nav"></nav>
+	<form action="index.html" method="post">
+
+		<h1>숫자 맞추기 랜덤 게임</h1>
+
+		<fieldset>
+			<legend>
+				<span class="number_hm2_hm2"></span>
+				Easy Mode / 숫자 제한 : 1-100
+			</legend>
+			<label for="number_hm2">숫자를 입력하세요 :</label>
+			<input type="text" id="number_h" name="user_number">
+			<button type="button" id="button_hm">CLICK!</button>
+
+			<label for="inNumber">현재 입력된 숫자:</label>
+			<textarea id="addnumber_hm" name="addnumber" readonly></textarea>
+			<label for="answer_hm">정답은?????:</label>
+			<textarea id="answerHm" name="answerHms" readonly></textarea>
+			<br>
+
+			<label>
+				시도 횟수 :
+				<a>
+					총 10번 중
+					<a id="countHm"></a>
+				</a>
+			</label>
+
+
+		</fieldset>
+
+		<fieldset>
+			<legend>
+				<span class="number_hm2">!</span>
+				현재까지 입력한 숫자는?
+			</legend>
+			<label for="totalnumber">numbers:</label>
+			<textarea id="totalnumber_1" name="totalnumber" readonly></textarea>
+		</fieldset>
+
+		<button style="background: #52478B" type="button" onclick="location.href = '/testgame_7'">다시
+			하기</button>
+		<button style="background: #32B8FF" type="button" onclick="location.href = '/testgame_7info'">선택
+			화면으로</button>
+
+
+	</form>
+
+
+	<script>
+	
+	   $(document).ready(function() {
+           $("#number_h").keydown(function(key) {
+               if (key.keyCode == 13) {
+                   return false;
+               }
+           });
+       });
+
+
+
+		var num1 = 0, num2 = 0, total = 0;
+		/* total 변수는 임의의 수를 받는 기능을 넣고 싶을 경우에 쓴다 (제한횟수 조절. 현재 default는 10으로 돼 있음)*/
+		var count = 0;
+		$('#countHm').text(count + "번째");
+
+		num1 = parseInt((Math.random()) * 100) + 1;
+		var arr = []; //배열 생성
+		console.log("count : " + count);
+
+		$('#button_hm').click(function() {
+
+			num2 = parseInt($('#number_h').val());
+
+			for (var i = 0; i < 10; i++) {
+				if(isNaN(num2))
+					{
+					return false;
+					}
+				
+				count++;
+				arr.push(num2); //배열에 num2값 담기
+
+				console.log("arr ;;;;;;" + arr);
+
+				var show = '';
+				for ( var a in arr) {
+				
+					show += arr[a] + ", ";
+
+				}
+				$('#totalnumber_1').text(show);
+
+				$('#addnumber_hm').text(num2);
+				$('#countHm').text(count + "번 시도했음ㅋㅋ 맞출 생각 있는 거지?.");
+
+				console.log("!!!!!!!!!!!!!!!!!!!count : " + count);
+
+				if (count < 10) {
+					if (num1 < num2) {
+						alert("너무 크게 입력했네 ~? 줄여보지 그래 ㅋㅋㅋㅋ");
+						return false;
+
+					} else if (num1 == num2) {
+
+						$('#answerHm').text(num2);
+						var result = confirm(num1 + ' 가 정답입니다. ');
+						return false;
+
+					} else if (num1 > num2) {
+						alert("너무 작게 입력했네 ~? 크게 입력해보지 그래 ㅋㅋㅋㅋ");
+						return false;
+
+					} else {
+						alert("숫자를 입력하세요");
+						count--;
+						return false;
+
+					}
+				} else {
+					if (num1 != num2) {
+						$('#button_hm').attr('disabled', 'disabled');
+						alert("기회를 모두 소진하셨습니다.");
+						$('#answerHm').text(num1);
+						return false;
+
+					} else {
+						$('#button_hm').attr('disabled', 'disabled');
+						$('#answerHm').text(num1);
+						alert(num1 + ' 가 정답입니다. ');
+						return false;
+
+					}
+
+				}
+
+			}
+
+		});
+	</script>
+
+
+</body>
+
+</html>

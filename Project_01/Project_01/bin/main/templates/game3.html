@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="common/head">
+
+</head>
+<body>
+
+	<nav th:replace="common/nav"></nav>
+
+	<script>
+		
+	</script>
+
+
+	<div class="jumbotron">
+		<div class="container text-center">
+			<form method="post" action="/game">
+				<div>
+					<label for="result">복불복 게임</label> <br>
+					<label for="result">5 X 5 칸에서 꽝을 고르면 패배!</label> <br>
+					
+					<button type="button" id="1" class="btn btn-default">01</button>
+					<button type="button" id="2" class="btn btn-default">02</button>
+					<button type="button" id="3" class="btn btn-default">03</button>
+					<button type="button" id="4" class="btn btn-default">04</button>
+					<button type="button" id="5" class="btn btn-default">05</button>
+					<br>
+					<button type="button" id="6" class="btn btn-default">06</button>
+					<button type="button" id="7" class="btn btn-default">07</button>
+					<button type="button" id="8" class="btn btn-default">08</button>
+					<button type="button" id="9" class="btn btn-default">09</button>
+					<button type="button" id="10" class="btn btn-default">10</button>
+					<br>
+					<button type="button" id="11" class="btn btn-default">11</button>
+					<button type="button" id="12" class="btn btn-default">12</button>
+					<button type="button" id="13" class="btn btn-default">13</button>
+					<button type="button" id="14" class="btn btn-default">14</button>
+					<button type="button" id="15" class="btn btn-default">15</button>
+					<br>
+					<button type="button" id="16" class="btn btn-default">16</button>
+					<button type="button" id="17" class="btn btn-default">17</button>
+					<button type="button" id="18" class="btn btn-default">18</button>
+					<button type="button" id="19" class="btn btn-default">19</button>
+					<button type="button" id="20" class="btn btn-default">20</button>
+					<br>
+					<button type="button" id="21" class="btn btn-default">21</button>
+					<button type="button" id="22" class="btn btn-default">22</button>
+					<button type="button" id="23" class="btn btn-default">23</button>
+					<button type="button" id="24" class="btn btn-default">24</button>
+					<button type="button" id="25" class="btn btn-default">25</button>
+					
+				</div>
+				<button type="button" id="complete_dw" class="btn btn-primary btn-block">실행</button>
+			</form>
+		</div>
+	</div>
+
+
+	<footer th:replace="common/footer"> </footer>
+
+	<script>
+		var ran = 0;
+		
+		$('#complete_dw').click(function() {
+			ran = parseInt(Math.random() * 25 + 1);
+		});
+		
+		$('#1').click(function() {
+			if($('#1').text() == ran) {
+				this.style.color = "red";
+				alert("멍충이");
+				location="/";
+				
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#2').click(function() {
+			if($('#2').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#3').click(function() {
+			if($('#3').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#4').click(function() {
+			if($('#4').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#5').click(function() {
+			if($('#5').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#6').click(function() {
+			if($('#6').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#7').click(function() {
+			if($('#7').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#8').click(function() {
+			if($('#8').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#9').click(function() {
+			if($('#9').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#10').click(function() {
+			if($('#10').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#11').click(function() {
+			if($('#11').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#12').click(function() {
+			if($('#12').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#13').click(function() {
+			if($('#13').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#14').click(function() {
+			if($('#14').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#15').click(function() {
+			if($('#15').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#16').click(function() {
+			if($('#16').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#17').click(function() {
+			if($('#17').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#18').click(function() {
+			if($('#18').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#19').click(function() {
+			if($('#19').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#20').click(function() {
+			if($('#20').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#21').click(function() {
+			if($('#21').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#22').click(function() {
+			if($('#22').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#23').click(function() {
+			if($('#23').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#24').click(function() {
+			if($('#24').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+		$('#25').click(function() {
+			if($('#25').text() == ran) {
+				this.style.color = "red";
+				alert("꽝!");
+			} else {
+				this.style.color = "blue";
+			}
+		});
+	</script>
+
+
+</body>
+</html>

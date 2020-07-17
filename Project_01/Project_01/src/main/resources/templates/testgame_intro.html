@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="common/head">
+<style>
+body{
+	margin: 0;
+	min-width: 980px;
+	padding: 0;
+}
+
+p{
+	margin: 0 0 20px 0;	
+}
+
+p, ul{
+	font-family:"Proxima Nova Light", 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	font-size-adjust:0.488;
+	font-weight:200;
+	font-style:normal;
+}
+
+img{
+	border: 0;
+}
+
+h1, #pixels{
+	font-family:"Museo 900", Verdana, serif;
+	font-size-adjust:0.40;
+	font-weight:700;
+	font-style:normal;
+}
+
+h2{
+	font-family:"Beau Sans Pro Book", Verdana, sans-serif;
+	font-size-adjust:0.531;
+	font-weight:500;
+	font-style:normal;
+	}
+</style>
+
+<body>
+	<nav th:replace="common/nav"></nav>
+
+
+	<div class="jumbotron">
+		<div class="container text-center">
+			<div class="container">
+				<h1><strong>초성게임 참고사항</strong></h1>
+			</div>
+		</div>
+	</div>
+
+	<div id="intro_hm">
+		<div class="story_hm">
+			<div class="float-left_hm">
+				<h2>제한 시간</h2>
+				<p> 한 문제당 제한 시간은 1분 30초이며,</p>
+				<p> 사회자가 임의로 제한 시간 전에 다음 페이지로 넘길 수 있습니다</p>
+			</div>
+		</div>
+		<!--.story-->
+	</div>
+	<!--#intro-->
+
+	<div id="second">
+		<div class="story_hm">
+			<div class="bg_hm"></div>
+			<div class="float-right_hm">
+				<h2>아헹</h2>
+				<p>ㅋㅋㅋ ㅋㅋㅋㅋㅋㅋ</p>
+				<p>ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+				ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ.</p>
+			</div>
+		</div>
+		<!--.story-->
+
+	</div>
+	<!--#second-->
+
+	<div id="third">
+		<div class="story_hm">
+			<div class="float-left_hm">
+				<h2>아놔아놔</h2>
+				<p>진짜 할말없네 </p>
+			</div>
+		</div>
+		<!--.story-->
+	</div>
+	<!--#third-->
+	
+	<div id="fourth">
+		<div class="story_hm">
+			<div class="float-right_hm">
+				<h2>아놔</h2>
+				<p>진짜 할말이 없다 </p>
+				<p> 아래 버튼을 눌러 입장하세요</p>
+				<button type="button" id="complete_hm2" class="btn btn-primary btn-block">게임으로 입장하기</button>
+			</div>
+		</div>
+		<!--.story-->
+	</div>
+	<!--#third-->
+
+	
+
+
+	<footer th:replace="common/footer"> </footer>
+
+	<script>
+		$(".hover").mouseleave(function() {
+			$(this).removeClass("hover");
+		});
+		
+		$("#complete_hm2").click(function() {
+			location = "/testgame_1";
+			return false;
+		});
+
+		if (opener != null) {
+			window.close(); //현재 창 끄기
+		}
+
+		$(document).ready(function() {
+			$('#nav').localScroll(800);
+			$('#intro').parallax("50%", 0.1);
+			$('#second').parallax("50%", 0.1);
+			$('.bg').parallax("50%", 0.4);
+			$('#third').parallax("50%", 0.3);
+			$('#fourth').parallax("50%", 0.3);
+
+		})
+	</script>
+
+
+
+
+
+
+</body>
+</html>

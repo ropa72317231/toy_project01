@@ -1,0 +1,132 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+
+
+p {
+ 
+    top: 250px;
+    font: normal 18px Oswald, sans-serif;
+    color: white;
+}
+
+p a {
+    text-decoration: none;
+    font: bold 18px Oswald, sans-serif;
+    color: pink;
+}
+
+p a:hover {
+    border-bottom: 1px dotted pink;
+}
+
+.nav {
+    margin: 0;
+    padding: 0;
+    background-color: #1c2020;
+    float: left;
+    list-style: none;
+}
+
+.nav li {
+    float: left;
+}
+
+.nav li a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 16px;
+    font: bold 20px Oswald, sans-serif;
+    text-transform: uppercase;
+    color: white;
+    position: relative;
+}
+
+#red {
+    border-top: 2px solid red;
+}
+
+#red:hover {
+    background-color: red;
+}
+
+#orange {
+    border-top: 2px solid orange;
+}
+
+#orange:hover {
+    background-color: orange;
+}
+
+#yellow {
+    border-top: 2px solid yellow;
+}
+
+#yellow:hover {
+    background-color: yellow;
+    color: #1c2020;
+}
+
+#green {
+    border-top: 2px solid green;
+}
+
+#green:hover {
+    background-color: green;
+}
+
+#blue {
+    border-top: 2px solid blue;
+}
+
+#blue:hover {
+    background-color: blue;
+}
+
+#indigo {
+    border-top: 2px solid indigo;
+}
+
+#indigo:hover {
+    background-color: indigo;
+}
+
+#purple {
+    border-top: 2px solid purple;
+}
+
+#purple:hover {
+    background-color: purple;
+}
+
+.nav ul {
+    display: none;
+}
+
+.nav li:hover ul {
+    display: block;
+    position: absolute;
+    list-style: none;
+    background-color: #1c2020;
+    padding: 0px;
+}
+
+.nav li:hover li {
+    display: block;
+    float: none;
+}
+
+.nav li:hover li a {
+    width: 300px;
+    font: normal 14px Oswald, sans-serif;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.nav li:hover li a:hover {
+    background-color: green;
+}
+
+.nav li:hover > a {
+    background-color: green;
+}
+

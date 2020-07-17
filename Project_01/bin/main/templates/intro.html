@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="common/head">
+<style>
+body{
+	margin: 0;
+	min-width: 980px;
+	padding: 0;
+}
+
+p{
+	margin: 0 0 20px 0;	
+}
+
+p, ul{
+	font-family:"Proxima Nova Light", 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	font-size-adjust:0.488;
+	font-weight:200;
+	font-style:normal;
+}
+
+img{
+	border: 0;
+}
+
+h1, #pixels{
+	font-family:"Museo 900", Verdana, serif;
+	font-size-adjust:0.40;
+	font-weight:700;
+	font-style:normal;
+}
+
+h2{
+	font-family:"Beau Sans Pro Book", Verdana, sans-serif;
+	font-size-adjust:0.531;
+	font-weight:500;
+	font-style:normal;
+	}
+</style>
+
+<body>
+	<nav th:replace="common/nav"></nav>
+
+
+	<div class="jumbotron">
+		<div class="container text-center">
+			<div class="container">
+				<h1><strong>About our Project</strong></h1>
+			</div>
+		</div>
+	</div>
+
+	<div id="intro_hm">
+		<div class="story_hm">
+			<div class="float-left_hm">
+				<h2>Welcome to...</h2>
+				<p>Team No.4</p>
+			</div>
+		</div>
+		<!--.story-->
+	</div>
+	<!--#intro-->
+
+	<div id="second">
+		<div class="story_hm">
+			<div class="bg_hm"></div>
+			<div class="float-right_hm">
+				<h2>About us..........</h2>
+				<p></p>
+				<p>
+			</p>
+			</div>
+		</div>
+		<!--.story-->
+
+	</div>
+	<!--#second-->
+
+	<div id="third">
+		<div class="story_hm">
+			<div class="float-left_hm">
+				<h2> We Make</h2>
+				<p>....</p>
+			</div>
+		</div>
+		<!--.story-->
+	</div>
+	<!--#third-->
+	
+	<div id="fourth">
+		<div class="story_hm">
+			<div class="float-right_hm">
+				<h2>Vision</h2>
+				<p>.... </p>
+			</div>
+		</div>
+		<!--.story-->
+	</div>
+	<!--#third-->
+
+	
+
+
+	<footer th:replace="common/footer"> </footer>
+
+	<script>
+		$(".hover").mouseleave(function() {
+			$(this).removeClass("hover");
+		});
+
+		if (opener != null) {
+			window.close(); //현재 창 끄기
+		}
+
+		$(document).ready(function() {
+			$('#nav').localScroll(800);
+			$('#intro').parallax("50%", 0.1);
+			$('#second').parallax("50%", 0.1);
+			$('.bg').parallax("50%", 0.4);
+			$('#third').parallax("50%", 0.3);
+			$('#fourth').parallax("50%", 0.3);
+
+		})
+	</script>
+
+
+
+
+
+
+</body>
+</html>

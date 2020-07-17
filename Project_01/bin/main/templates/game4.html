@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="common/head">
+
+</head>
+<body>
+
+	<nav th:replace="common/nav"></nav>
+
+	<script id="kkk">
+		
+	</script>
+
+
+	<div class="jumbotron">
+		<div class="container text-center">
+			<form method="post" action="/game4">
+				<label for="result">사칙연산 게임</label> <br>
+				<label for="result">원하는 숫자 갯수</label> <br> 
+				<input id="number_game4" type="text" value="0">
+				<button type="button" id="input_game4">입력</button>
+				<br>
+				<div id="game_game4"></div>
+				<button type="button" id="start_game4">실행</button>
+				
+			</form>
+		</div>
+	</div>
+
+
+	<footer th:replace="common/footer">광고달기 </footer>
+
+	<script>
+		var ran = 0;
+
+		var num = 0
+
+		$('#number_game4').on("keyup", function() {
+			$(this).val($(this).val().replace(/[^0-9]/g, ""));
+		});
+
+		$('#input_game4').click(function() {
+			num = parseInt($('#number_game4').val());
+			if(num < 2) {
+				alert("최소 2 이상 입력하세요.");
+				num = 0;
+			}
+		});
+
+		var html = '';
+		var x = ['*', '-', '+'];
+		var arr = [];
+		var part = 0;
+		var result_dw = '';
+		var answer;
+		
+		
+		$('#start_game4').click(function() {
+			
+			
+			for (var i = 1; i <= num; i++) {
+				html += '<label id="' + i + '">';
+				part = parseInt(Math.random() * 10 + 1);
+				arr.push(part);
+				html += part + ' </label>';
+				/* html += '<br>'; */
+				if(i != num) {
+					ran = parseInt(Math.random() * 3);
+					arr.push(x[ran]);
+					html += '<label id="q' + i + '">';
+					html += (x[ran]) + ' </label>';
+					/* html += '<br>'; */
+				}
+			}
+			html += '<label for="result_game">정답은?</label> <br>'
+			html += '<input id="result_game4" type="text" value="0">';
+			html += '<button type="button" id="result_input">입력</button>';
+			
+			for(var i = 0; i < (num * 2 - 1); i ++) {
+				result_dw += arr[i];
+			}
+			result_dw += ';';
+			
+			answer = eval(result_dw);
+			
+			$('#game_game4').html(html);
+			/*  */
+			
+		});
+
+		// 미래에 생성될 요소까지 이벤트 적용 => on
+// 		$('#game > button').click(function() {
+		$('#game_game4').on("click", "button", function() {
+			console.log(1111);
+			console.log($('#result_game4').val());
+			
+			
+			if($('#result_game4').val() == answer) {
+				alert("정답!");
+			} else {
+				alert("오답!");
+			}
+			
+		});
+	</script>
+
+
+</body>
+</html>

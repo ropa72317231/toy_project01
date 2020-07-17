@@ -1,0 +1,175 @@
+
+<head>
+<meta http-equiv="refresh" content="2; url=/testgame_6">
+
+	<style>
+	body {
+	width: 100%;
+	background: linear-gradient(45deg, rgb(26, 46, 171), rgb(100, 100, 170));
+}
+
+#canvas {
+	display: block;
+	margin: 100px auto;
+	display: none;
+}
+
+.Aqua {
+	position: relative;
+	width: 12em;
+	height: 12em;
+	margin: calc(30vh - 1em) auto;
+	animation: wave 4s linear infinite;
+}
+
+@keyframes wave {
+	from {
+		background-position: 1200px 0, 1200px 0;
+	}
+}
+
+.Aqua::after {
+	z-index: -1;
+	position: absolute;
+	content: '';
+	width: 20%;
+	height: 20%;
+	border-radius: 50%;
+	background: HSLA(0, 0, 0, 0);
+	box-shadow: -10px -10px 0 white inset;
+	transform: translateY(70px) translateX(120px);
+}
+
+.Aqua::before {
+	z-index: 2;
+	position: absolute;
+	content: '';
+	width: 2%;
+	height: 2%;
+	border-radius: 50%;
+	background: HSLA(100, 0, 0, 1);
+	box-shadow: 100px 0px 0 white,
+		80px 10px 0 white,
+		30px 20px 0 white,
+		25px 40px 0 white,
+		10px 40px 0 white,
+		-5px 50px 0 white,
+		18px 80px 0 white,
+		30px 70px 0 white,
+		50px 75px 0 white,
+		75px 85px 0 white,
+		80px 60px 0 white,
+		60px 50px 0 white;
+	animation: star 12s infinite;
+}
+@keyframes star{
+	50%{
+		box-shadow: 60px 50px 0 white,
+		100px 0px 0 white,
+		80px 10px 0 white,
+		30px 20px 0 white,
+		25px 40px 0 white,
+		10px 40px 0 white,
+		-5px 50px 0 white,
+		18px 80px 0 white,
+		30px 70px 0 white,
+		50px 75px 0 white,
+		75px 85px 0 white,
+		80px 60px 0 white;
+	}
+}
+
+
+@supports (-webkit-background-clip:text) and (-webkit-text-fill-color:transparent) {
+
+.gradient-text-ani {
+    color: #f35626;
+    background-image: linear-gradient(92deg,#f35626,#feab3a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: Hue 5s linear infinite;
+}
+
+ @keyframes Hue {
+  0% {
+   filter:hue-rotate(0deg)
+  }
+  to {
+   filter:hue-rotate(-1turn)
+  }
+ }
+}
+
+
+.text-base {
+    font-weight: 700;
+		font-size: 30px;
+}
+
+#notice_hm
+{
+	display: flex;
+	align-items: center;
+	justify-content:center;
+	width:100vw;
+	
+}
+
+	
+
+
+
+	</style>
+</head>
+<body>
+<canvas id = "canvas" width = "600" height = "300"></canvas>
+<div class="Aqua"></div>
+<span class="gradient-text-ani text-base"  id ="notice_hm">Loading....</span>
+<span class="gradient-text-ani text-base"  id ="notice_hm">물총이 있으면 더 재밌어집니다♥</span>
+<script>
+	window.onload = function() {
+	var c = document.getElementById("canvas");
+	var bg = document.getElementsByClassName("Aqua")[0];
+	var ct = c.getContext("2d");
+	var width = c.width;
+	var height = c.height;
+	var beginX = 0; 
+	
+	var A = 5; 
+	var w = .147; 
+	var T = 2;
+	var C = 100;
+	var m = 7; 
+	function SIN(A, w,T, C, x) {
+
+		return A * Math.sin(w * T * x) + A * Math.sin(.5*w * T * x) + A * Math.sin(.25*w * T * x) + C;
+	}
+
+	function paint() {
+		ct.beginPath();
+		ct.moveTo(beginX, C);
+		for (var i = 0; i < width + 1 ; i++) {
+			ct.lineTo(beginX + m * i, SIN(A + 1, w,T + 1, C, i));
+		}
+		ct.lineTo(width,height);
+		ct.lineTo(0,height);
+		ct.closePath();
+		ct.fillStyle = "rgba(21,71,215,.8)"
+		ct.fill();
+		
+		ct.beginPath();
+		ct.moveTo(beginX, C);
+		for (var i = 0; i < width + 1 ; i++) {
+			ct.lineTo(beginX + m * i, SIN(A, w,T, C, i));
+		}
+		ct.lineTo(width,height);
+		ct.lineTo(0,height);
+		ct.closePath();
+		ct.fillStyle = "rgba(21,171,215,.5)"
+		ct.fill();
+	}
+	paint();
+	bg.style.background = "url("+c.toDataURL()+")";
+};
+</script>
+</body>
